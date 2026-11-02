@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>אישור הצעת מחיר · שושי פלדמן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap">
+<style>
+/* layout: one narrow signing sheet - summary, form, signature pad, then the signed confirmation */
+:root{
+  --navy:#1a2165;--navy-2:#272f7d;--ink:#1f2340;--muted:#6b6f8a;--line:#e3e4ee;
+  --paper:#ffffff;--bg:#f2f2f8;--gold:#f2b134;--ok:#1b7a5f;--ok-bg:#e8f6f0;--err:#b3261e;
+  --font:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:24px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px))}
+.sheet{max-width:640px;margin:0 auto;background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 24px 48px -28px rgba(26,33,101,.45)}
+header{background:var(--navy);color:#fff;text-align:center;padding:30px 20px 26px}
+header .bs{font-size:13px;opacity:.75}
+header h1{margin:8px 0 4px;font-weight:300;font-size:34px;letter-spacing:.01em}
+header .for{font-size:17px;opacity:.9}
+.logo{margin-top:14px;font-size:22px;letter-spacing:.01em}
+.logo b{font-weight:700}.logo i{color:var(--gold);font-style:normal}
+section{padding:24px 26px;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:0}
+h2{margin:0 0 12px;font-size:18px;font-weight:700;color:var(--navy)}
+.sum{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.sum li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.sum li span:last-child{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sum li.total{border:0;font-size:20px;color:var(--navy)}
+.sum li.total span:last-child{font-weight:700}
+.muted{color:var(--muted);font-size:14px}
+ul.inc{margin:6px 0 0;padding:0 18px 0 0;font-size:15px}
+label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+input[type=text]{width:100%;font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input[type=text]:focus{outline:2px solid var(--navy);outline-offset:1px}
+.pad-wrap{position:relative;border:1.5px dashed #b9bcd6;border-radius:14px;background:#fbfbfe;touch-action:none}
+canvas#pad{display:block;width:100%;height:190px;border-radius:14px;cursor:crosshair}
+.pad-hint{position:absolute;inset:0;display:grid;place-items:center;color:#a3a6c2;font-size:16px;pointer-events:none}
+.pad-line{position:absolute;right:24px;left:24px;bottom:44px;border-bottom:1px solid #d3d5e6;pointer-events:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-top:16px}
+.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--navy);flex:none}
+button{font:inherit;cursor:pointer;border-radius:12px;min-height:48px;padding:10px 18px;font-size:16px}
+.btn{background:var(--navy);color:#fff;border:0;font-weight:700;width:100%;font-size:18px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.err{color:var(--err);font-size:14px;min-height:20px;margin-top:8px}
+#done{display:none}
+#done.on{display:block}
+.okbox{background:var(--ok-bg);color:var(--ok);border-radius:14px;padding:14px 16px;font-weight:600;margin-bottom:14px}
+#doc{width:100%;border:1px solid var(--line);border-radius:14px;margin:4px 0 14px}
+.actions{display:grid;gap:10px}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
+@media (max-width:420px){header h1{font-size:28px}section{padding:20px 18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <header>
+    <div class="bs">בסיעתא דשמיא</div>
+    <h1>אישור הצעת מחיר</h1>
+    <div class="for">אפיון ופיתוח אתר חנות עבור יהודית ופסי - תכשיטים</div>
+    <div class="logo">שושי<b>פלדמן</b><i>.</i></div>
+  </header>
+
+  <section aria-labelledby="sumTitle">
+    <h2 id="sumTitle">סיכום ההצעה</h2>
+    <ul class="sum">
+      <li><span>אפיון ופיתוח האתר, כולל הבוט לעיצוב תכשיטים</span><span>8,000 ₪</span></li>
+      <li><span>הרחבה 1 - תלת-ממד וגרירת אבנים</span><span>1,900 ₪</span></li>
+      <li><span>הרחבה 2 - תמונה עם תכשיטים לחיצים</span><span>800 ₪</span></li>
+      <li><span>בונוסים (פונט, תוסף מהירות, וואטסאפ צף, סרטון השקה)</span><span>מתנה</span></li>
+      <li class="total"><span>סה״כ</span><span>10,700 ₪</span></li>
+    </ul>
+    <p class="muted">התשלום ב-2 פעימות של 5,350 ₪: לפני תחילת הפרויקט, ובאמצע הפרויקט לאחר סבב תיקונים ראשון.
+      הפירוט המלא, כולל תכולת העבודה, הלו״ז, כללי העבודה ותנאי ההתקשרות, מופיע בהצעת המחיר שנשלחה אלייך בתאריך 02/11/2026.</p>
+  </section>
+
+  <form id="form" novalidate>
+  <section aria-labelledby="signTitle">
+    <h2 id="signTitle">חתימה</h2>
+    <label for="name">שם מלא</label>
+    <input type="text" id="name" autocomplete="name" placeholder="השם שלך" required>
+
+    <label for="pad">חתימה <span class="muted">(באצבע או בעכבר)</span></label>
+    <div class="pad-wrap">
+      <canvas id="pad" aria-label="משטח חתימה"></canvas>
+      <div class="pad-line"></div>
+      <div class="pad-hint" id="padHint">חתמי כאן</div>
+    </div>
+    <div class="row" style="margin-top:8px"><button type="button" class="ghost" id="clear">ניקוי החתימה</button></div>
+
+    <label class="check" for="agree">
+      <input type="checkbox" id="agree">
+      <span>קראתי את הצעת המחיר המלאה מתאריך 02/11/2026, כולל כללי העבודה ותנאי ההתקשרות, ואני מאשרת אותה ואת התחייבותי לתשלום לפיה.</span>
+    </label>
+    <div class="err" id="err" role="alert"></div>
+    <button type="submit" class="btn" id="submit">אישור וחתימה</button>
+  </section>
+  </form>
+
+  <section id="done" aria-live="polite">
+    <div class="okbox">ההצעה נחתמה בהצלחה, והאישור החתום נשלח לשושי. תודה!</div>
+    <img id="doc" alt="אישור הצעת המחיר החתום">
+    <div class="actions">
+      <button type="button" class="btn" id="save">שמירת האישור אצלך</button>
+      <button type="button" class="ghost" id="share">שליחת עותק גם בוואטסאפ</button>
+    </div>
+    <p class="muted" id="shareNote"></p>
+  </section>
+</main>
+<footer>שושי פלדמן · עיצוב ופיתוח אתרים</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const pad = $('pad'), ctx = pad.getContext('2d');
+  let drawing = false, hasInk = false, last = null;
+
+  function sizePad() {
+    const r = pad.getBoundingClientRect(), dpr = Math.max(1, window.devicePixelRatio || 1);
+    const old = hasInk ? pad.toDataURL() : null;
+    pad.width = Math.round(r.width * dpr); pad.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1a2165'; ctx.lineWidth = 2.6;
+    if (old) { const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, r.width, r.height); im.src = old; }
+  }
+  const pos = e => { const r = pad.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  pad.addEventListener('pointerdown', e => { drawing = true; last = pos(e); pad.setPointerCapture(e.pointerId); dot(last); });
+  pad.addEventListener('pointermove', e => {
+    if (!drawing) return; const p = pos(e);
+    ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; ink();
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => pad.addEventListener(t, () => { drawing = false; }));
+  function dot(p) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fillStyle = '#1a2165'; ctx.fill(); ink(); }
+  function ink() { if (!hasInk) { hasInk = true; $('padHint').style.display = 'none'; } }
+  $('clear').onclick = () => { ctx.clearRect(0, 0, pad.width, pad.height); hasInk = false; $('padHint').style.display = ''; };
+  new ResizeObserver(sizePad).observe(pad);
+
+  // ---- the signed confirmation, drawn as an image ----
+  let docBlob = null, docName = '';
+  async function makeDoc(name, when, code) {
+    await document.fonts.ready;
+    const W = 1200, H = 1640, c = document.createElement('canvas'); c.width = W; c.height = H;
+    const g = c.getContext('2d'); g.direction = 'rtl'; g.textAlign = 'right';
+    const F = (w, s) => `${w} ${s}px Assistant, Arial, sans-serif`;
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#1a2165'; g.fillRect(0, 0, W, 250);
+    g.fillStyle = '#ffffff'; g.textAlign = 'center';
+    g.font = F(400, 26); g.fillText('בסיעתא דשמיא', W / 2, 60);
+    g.font = F(300, 70); g.fillText('אישור הצעת מחיר', W / 2, 150);
+    g.font = F(400, 32); g.fillText('אפיון ופיתוח אתר חנות עבור יהודית ופסי - תכשיטים', W / 2, 210);
+    g.textAlign = 'right'; const R = W - 80;
+    let y = 340;
+    g.fillStyle = '#1a2165'; g.font = F(700, 36); g.fillText('סיכום ההצעה', R, y); y += 60;
+    const rows = [['אפיון ופיתוח האתר, כולל הבוט לעיצוב תכשיטים', '8,000 ₪'], ['הרחבה 1 - תלת-ממד וגרירת אבנים', '1,900 ₪'],
+      ['הרחבה 2 - תמונה עם תכשיטים לחיצים', '800 ₪'], ['בונוסים (פונט, תוסף מהירות, וואטסאפ צף, סרטון השקה)', 'מתנה']];
+    g.font = F(400, 30);
+    for (const [k, v] of rows) {
+      g.fillStyle = '#1f2340'; g.textAlign = 'right'; g.fillText(k, R, y);
+      g.textAlign = 'left'; g.fillText(v, 80, y); y += 54;
+    }
+    g.strokeStyle = '#e3e4ee'; g.lineWidth = 2; g.beginPath(); g.moveTo(80, y - 30); g.lineTo(R, y - 30); g.stroke(); y += 16;
+    g.fillStyle = '#1a2165'; g.font = F(700, 38); g.textAlign = 'right'; g.fillText('סה״כ', R, y); g.textAlign = 'left'; g.fillText('10,700 ₪', 80, y); y += 56;
+    g.textAlign = 'right'; g.fillStyle = '#1f2340'; g.font = F(400, 28);
+    g.fillText('התשלום ב-2 פעימות של 5,350 ₪, לפי הצעת המחיר.', R, y); y += 90;
+
+    g.fillStyle = '#1a2165'; g.font = F(700, 36); g.fillText('הצהרה', R, y); y += 56;
+    g.fillStyle = '#1f2340'; g.font = F(400, 30);
+    const decl = 'קראתי את הצעת המחיר המלאה מתאריך 02/11/2026, כולל כללי העבודה ותנאי ההתקשרות, ואני מאשרת אותה ואת התחייבותי לתשלום לפיה.';
+    y = wrap(g, decl, R, y, W - 160, 46) + 70;
+
+    g.fillStyle = '#1a2165'; g.font = F(700, 36); g.fillText('פרטי החתימה', R, y); y += 60;
+    g.fillStyle = '#1f2340'; g.font = F(400, 30);
+    g.fillText('שם: ' + name, R, y); y += 50;
+    g.fillText('תאריך ושעה: ' + when, R, y); y += 50;
+    g.fillText('קוד אישור: ' + code, R, y); y += 40;
+
+    // signature box
+    const bw = 620, bh = 260, bx = W - 80 - bw, by = y + 20;
+    g.strokeStyle = '#b9bcd6'; g.setLineDash([10, 8]); g.strokeRect(bx, by, bw, bh); g.setLineDash([]);
+    const s = pad.getBoundingClientRect(), k = Math.min((bw - 40) / s.width, (bh - 40) / s.height);
+    g.drawImage(pad, bx + (bw - s.width * k) / 2, by + (bh - s.height * k) / 2, s.width * k, s.height * k);
+    g.fillStyle = '#6b6f8a'; g.font = F(400, 24); g.fillText('חתימת הלקוחה', R, by + bh + 40);
+
+    g.fillStyle = '#1a2165'; g.fillRect(0, H - 90, W, 90);
+    g.fillStyle = '#ffffff'; g.textAlign = 'center'; g.font = F(400, 30); g.fillText('שושי פלדמן · עיצוב ופיתוח אתרים', W / 2, H - 35);
+    return new Promise(res => c.toBlob(b => res({ blob: b, url: c.toDataURL('image/png') }), 'image/png'));
+  }
+  function wrap(g, text, R, y, maxW, lh) {
+    const words = text.split(' '); let line = '';
+    for (const w of words) {
+      const t = line ? line + ' ' + w : w;
+      if (g.measureText(t).width > maxW && line) { g.fillText(line, R, y); y += lh; line = w; } else line = t;
+    }
+    if (line) { g.fillText(line, R, y); y += lh; }
+    return y;
+  }
+
+  $('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = $('name').value.trim(), err = $('err');
+    if (!name) { err.textContent = 'נא למלא שם מלא.'; $('name').focus(); return; }
+    if (!hasInk) { err.textContent = 'נא לחתום במשטח החתימה.'; return; }
+    if (!$('agree').checked) { err.textContent = 'נא לסמן שקראת את ההצעה ואת מאשרת אותה.'; return; }
+    err.textContent = ''; $('submit').disabled = true;
+    const d = new Date(), p = n => String(n).padStart(2, '0');
+    const when = `${p(d.getDate())}/${p(d.getMonth() + 1)}/${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`;
+    const code = 'YP-' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    const { blob, url } = await makeDoc(name, when, code);
+    docBlob = blob; docName = `אישור הצעת מחיר - ${name} - ${code}.png`;
+    notify(name, when, code, blob);
+    $('doc').src = url; $('form').style.display = 'none'; $('done').classList.add('on');
+    $('done').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // E-mail the signed confirmation to Shoshi (FormSubmit; a plain form post into a hidden frame,
+  // because only a regular post can carry the image as an attachment).
+  function notify(name, when, code, blob) {
+    try {
+      const frame = document.createElement('iframe'); frame.name = 'sent'; frame.hidden = true; document.body.append(frame);
+      const f = document.createElement('form');
+      f.action = 'https://formsubmit.co/shoshif65@gmail.com'; f.method = 'POST'; f.enctype = 'multipart/form-data'; f.target = 'sent'; f.hidden = true;
+      const add = (k, v) => { const i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = v; f.append(i); };
+      add('_subject', `הצעת המחיר נחתמה - ${name}`);
+      add('_captcha', 'false'); add('_template', 'table');
+      add('שם החותמת', name); add('תאריך ושעה', when); add('קוד אישור', code);
+      add('הצעה', 'אפיון ופיתוח אתר חנות - יהודית ופסי תכשיטים, 10,700 ₪');
+      const file = document.createElement('input'); file.type = 'file'; file.name = 'attachment';
+      const dt = new DataTransfer(); dt.items.add(new File([blob], `אישור חתום - ${code}.png`, { type: 'image/png' })); file.files = dt.files;
+      f.append(file); document.body.append(f); f.submit();
+    } catch (e) { /* the WhatsApp button below still works */ }
+  }
+
+  function save() {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(docBlob); a.download = docName;
+    document.body.append(a); a.click(); a.remove();
+  }
+  $('save').onclick = save;
+  $('share').onclick = async () => {
+    const file = new File([docBlob], docName, { type: 'image/png' });
+    const text = 'שושי, מצרפת את אישור הצעת המחיר החתום 🙏';
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], text }); $('shareNote').textContent = 'אם בחרת בוואטסאפ, בחרי את שושי ושלחי.'; return; }
+      catch (e) { if (e.name === 'AbortError') return; }
+    }
+    // computers and browsers without file sharing: save the image, then open WhatsApp with a message
+    save();
+    $('shareNote').textContent = 'האישור נשמר אצלך כתמונה. בחלון הוואטסאפ שנפתח, צרפי את התמונה ושלחי לשושי.';
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  };
+})();
+</script>
+</body>
+</html>
