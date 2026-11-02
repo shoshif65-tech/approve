@@ -56,6 +56,13 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .okbox{background:var(--ok-bg);color:var(--ok);border-radius:14px;padding:14px 16px;font-weight:600;margin-bottom:14px}
 #doc{width:100%;border:1px solid var(--line);border-radius:14px;margin:4px 0 14px}
 .actions{display:grid;gap:10px}
+.pay{margin-top:22px;border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;background:#fafaff}
+.pay .amount{margin:0 0 10px;font-size:17px}
+.pay .amount b{color:var(--navy);font-size:20px;font-variant-numeric:tabular-nums}
+.bank{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.bank li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.bank li span:first-child{color:var(--muted)}
+.bank li span:last-child{font-weight:700;font-variant-numeric:tabular-nums;direction:ltr}
 footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
 @media (max-width:420px){header h1{font-size:28px}section{padding:20px 18px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -114,6 +121,19 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
       <button type="button" class="ghost" id="share">שליחת עותק גם בוואטסאפ</button>
     </div>
     <p class="muted" id="shareNote"></p>
+
+    <div class="pay">
+      <h2>השלב הבא: תשלום ראשון</h2>
+      <p class="amount">תשלום 1/2 - לפני תחילת הפרויקט: <b>5,350 ₪</b></p>
+      <ul class="bank">
+        <li><span>בנק</span><span>17 מרכנתיל</span></li>
+        <li><span>סניף</span><span>732</span></li>
+        <li><span>מספר חשבון</span><span id="acct">105570771</span></li>
+        <li><span>על שם</span><span>פלדמן</span></li>
+      </ul>
+      <button type="button" class="ghost" id="copyAcct">העתקת מספר החשבון</button>
+      <p class="muted">אחרי ההעברה, שלחי לשושי צילום של אישור ההעברה. העבודה תתחיל עם קבלת התשלום.</p>
+    </div>
   </section>
 </main>
 <footer>שושי פלדמן · עיצוב ופיתוח אתרים</footer>
@@ -244,6 +264,12 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
     document.body.append(a); a.click(); a.remove();
   }
   $('save').onclick = save;
+  $('copyAcct').onclick = async () => {
+    const b = $('copyAcct');
+    try { await navigator.clipboard.writeText($('acct').textContent); b.textContent = 'הועתק ✓'; }
+    catch (e) { const r = document.createRange(); r.selectNodeContents($('acct')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'מסומן - אפשר להעתיק'; }
+    setTimeout(() => { b.textContent = 'העתקת מספר החשבון'; }, 2500);
+  };
   $('share').onclick = async () => {
     const file = new File([docBlob], docName, { type: 'image/png' });
     const text = 'שושי, מצרפת את אישור הצעת המחיר החתום 🙏';
