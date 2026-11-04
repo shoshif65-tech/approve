@@ -114,11 +114,11 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
   </form>
 
   <section id="done" aria-live="polite">
-    <div class="okbox">ההצעה נחתמה בהצלחה, והאישור החתום נשלח לשושי. תודה!</div>
+    <div class="okbox">ההצעה נחתמה! נשאר צעד אחד: לשלוח לשושי את האישור החתום בוואטסאפ 👇</div>
     <img id="doc" alt="אישור הצעת המחיר החתום">
     <div class="actions">
-      <button type="button" class="btn" id="save">שמירת האישור אצלך</button>
-      <button type="button" class="ghost" id="share">שליחת עותק גם בוואטסאפ</button>
+      <button type="button" class="btn" id="share">שליחת האישור לשושי בוואטסאפ</button>
+      <button type="button" class="ghost" id="save">שמירת עותק אצלך</button>
     </div>
     <p class="muted" id="shareNote"></p>
 
@@ -165,7 +165,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
   new ResizeObserver(sizePad).observe(pad);
 
   // ---- the signed confirmation, drawn as an image ----
-  let docBlob = null, docName = '';
+  let docBlob = null, docName = '', signed = null;
   async function makeDoc(name, when, code) {
     await document.fonts.ready;
     const W = 1200, H = 1640, c = document.createElement('canvas'); c.width = W; c.height = H;
@@ -236,6 +236,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
     const code = 'YP-' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
     const { blob, url } = await makeDoc(name, when, code);
     docBlob = blob; docName = `אישור הצעת מחיר - ${name} - ${code}.png`;
+    signed = { name, when, code };
     notify(name, when, code, blob);
     $('doc').src = url; $('form').style.display = 'none'; $('done').classList.add('on');
     $('done').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -272,9 +273,12 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
   };
   $('share').onclick = async () => {
     const file = new File([docBlob], docName, { type: 'image/png' });
-    const text = 'שושי, מצרפת את אישור הצעת המחיר החתום 🙏';
+    const text = `שושי, חתמתי על הצעת המחיר (10,700 ₪) ✍️
+שם: ${signed.name}
+תאריך: ${signed.when}
+קוד אישור: ${signed.code}`;
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share({ files: [file], text }); $('shareNote').textContent = 'אם בחרת בוואטסאפ, בחרי את שושי ושלחי.'; return; }
+      try { await navigator.share({ files: [file], text }); $('shareNote').textContent = 'בחרי בוואטסאפ את שושי ושלחי. תודה!'; return; }
       catch (e) { if (e.name === 'AbortError') return; }
     }
     // computers and browsers without file sharing: save the image, then open WhatsApp with a message
